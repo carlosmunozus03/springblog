@@ -1,10 +1,7 @@
 package com.codeup.springblog.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostController {
@@ -17,22 +14,25 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public int postId(@PathVariable int id) {
-        return id;
+    public String postId(@PathVariable long id) {
+        return "View an individual post";
         //http://localhost:8080/posts/1
     }
 
+    //When you visit the URL you will see the form to create a post.
     @GetMapping("/posts/create")
     @ResponseBody
     public String postCreateGet() {
-        return "view the form for creating a post";
+        return "view the form for creating a post 'Create a post'";
         //http://localhost:8080/posts/create
     }
 
+    //When you submit the form on the /posts/create page,
+    //the information will be posted to the same URL.
+    //    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
     @PostMapping("/posts/create")
     @ResponseBody
-    public String postCreatePost() {
-        return "create a new post";
-        //http://localhost:8080/posts/create
+    public String createPost() {
+        return "Create new post.";
     }
 }
