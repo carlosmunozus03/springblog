@@ -2,9 +2,8 @@ package com.codeup.springblog.controllers;
 
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HelloController {
@@ -14,13 +13,26 @@ public class HelloController {
         return "<h1>Hello from Spring!</h1>";
     }
 
-    //the example below is with a String variable name
+    //the example below is with a String variable name and added Model and html-hello
     @GetMapping("/hello/{name}")
-    @ResponseBody
-    public String sayHello(@PathVariable String name) {
-        return "Hello " + name + "!";
-        //http://localhost:8080/hello/carlos
+    public String sayHello(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello";
     }
+
+    //Create form start...
+    @GetMapping("/join")
+    public String showJoinForm() {
+        return "join";
+    }
+
+    @PostMapping("/join")
+    public String joinCohort(@RequestParam(name = "cohort") String cohort, Model model) {
+        model.addAttribute("cohort", "Welcome to " + cohort + "!");
+        return "join";
+    }
+    //Create form end...
+
 
     //the example below is with a Number variable num
     @GetMapping("/number/{num}")
