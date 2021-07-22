@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head"></head>
+
+<body>
+<div th:replace="partials :: navbar"></div>
+
+<div th:if="${guessCorrect}">
+    You guessed correctly!
+</div>
+<p>You guessed: </p><span th:text="${n}"></span>
+<p>Dice has: </p><span th:text="${roll}"></span>
+
+<div th:if="${!guessCorrect}">
+    Try again!
+</div>
+
+<div th:replace="partials :: footer"></div>
+
+</body>
+</html>
