@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: "Chalkboard";
+        }
+
+        .nav {
+            flex-direction: row;
+            background-color: beige;
+            justify-items: center;
+            align-content: center;
+            text-align: center;
+            height: 3em;
+            font-size: 1.5em;
+            text-shadow: #c5b1cb 3px 3px 6px;
+
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 7vh;
+            width: 100%;
+            background-color: rgba(198, 192, 202, 0.69);
+            align-content: center;
+            justify-items: center;
+            font-size: 1.5em;
+            text-shadow: #c5b1cb 3px 3px 6px;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none !important;
+        }
+
+        li {
+            padding-top: .8em;
+        }
+    </style>
+</head>
+<body>
+<div class="nav" th:fragment="navbar">
+    <ul>
+        <li>Awesome Navbar!</li>
+    </ul>
+</div>
+
+<div class="footer" th:fragment="footer">
+    <ul>
+        <li>Awesome footer!</li>
+    </ul>
+</div>
+</body>
+</html>

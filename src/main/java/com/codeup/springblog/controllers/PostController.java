@@ -1,38 +1,46 @@
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class PostController {
+
+    List<Post> post = Arrays.asList(
+            new Post("Coding Coding Coding...", "Always Coding, always thriving on caffeine."),
+            new Post("Shinedown 2018!", "Shinedown was awesome as always!"),
+            new Post("Guinea Piggies!", "Insert something about your guineas here...")
+    );
+
     @GetMapping("/posts")
-    @ResponseBody
-    public String post() {
-        return "posts index page";
-        //http://localhost:8080/posts
+    public String posts(Model model) {
+        model.addAttribute("Posts", post);
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public String postId(@PathVariable long id) {
-        return "View an individual post";
-        //http://localhost:8080/posts/1
+    public String postId(@PathVariable int id, Model model) {
+        Post post = new Post("Test post", "test describe");
+        model.addAttribute("post", post);
+        return "/posts/show";
     }
 
-    //When you visit the URL you will see the form to create a post.
     @GetMapping("/posts/create")
     @ResponseBody
-    public String postCreateGet() {
-        return "view the form for creating a post 'Create a post'";
-        //http://localhost:8080/posts/create
+    public String createGet() {
+        return "Form for creating a post(Get)";
     }
 
-    //When you submit the form on the /posts/create page,
-    //the information will be posted to the same URL.
-    //    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
     @PostMapping("/posts/create")
     @ResponseBody
     public String createPost() {
-        return "Create new post.";
+        return "Create a post here(com.example.blog.models.Post)";
     }
+
 }
