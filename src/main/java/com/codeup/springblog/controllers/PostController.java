@@ -12,9 +12,10 @@ import java.util.List;
 public class PostController {
 
     List<Post> post = Arrays.asList(
-            new Post("Coding Coding Coding...", "Always Coding, always thriving on caffeine."),
-            new Post("Shinedown 2018!", "Shinedown was awesome as always!"),
-            new Post("Guinea Piggies!", "Insert something about your guineas here...")
+            new Post("Languages", "Always Learn another language, it could be person to person or person to machine"),
+            new Post("Neptune Cohort 2021!", "The best cohort in the codeup history!"),
+            new Post("Birds!", "Her love birding..."),
+            new Post("Airports", "Lost in the huge airports sometimes...")
     );
 
     @GetMapping("/posts")
@@ -28,7 +29,7 @@ public class PostController {
     public String postId(@PathVariable int id, Model model) {
         Post post = new Post("Test post", "test describe");
         model.addAttribute("post", post);
-        return "/posts/show";
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")

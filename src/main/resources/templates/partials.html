@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
+    <script src="https://kit.fontawesome.com/d0d640b552.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8"/>
     <title>Home</title>
     <style>
@@ -8,18 +9,18 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            font-family: "Chalkboard";
+            font-family: "Roboto Light";
         }
 
         .nav {
             flex-direction: row;
-            background-color: beige;
+            background-color: #c2dca4;
             justify-items: center;
             align-content: center;
             text-align: center;
             height: 3em;
             font-size: 1.5em;
-            text-shadow: #c5b1cb 3px 3px 6px;
+            text-shadow: #c1aec6 3px 3px 6px;
 
         }
 
@@ -29,11 +30,11 @@
             bottom: 0;
             height: 7vh;
             width: 100%;
-            background-color: rgba(198, 192, 202, 0.69);
+            background-color: rgba(159, 166, 177, 0.69);
             align-content: center;
             justify-items: center;
             font-size: 1.5em;
-            text-shadow: #c5b1cb 3px 3px 6px;
+            text-shadow: #c1aec6 3px 3px 6px;
             text-align: center;
         }
 
@@ -49,13 +50,13 @@
 <body>
 <div class="nav" th:fragment="navbar">
     <ul>
-        <li>Awesome Navbar!</li>
+        <li>This is a cool Navbar!</li>
     </ul>
 </div>
 
 <div class="footer" th:fragment="footer">
     <ul>
-        <li>Awesome footer!</li>
+        <li>This is an awesome Footer!</li>
     </ul>
 </div>
 </body>

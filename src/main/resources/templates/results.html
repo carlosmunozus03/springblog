@@ -5,13 +5,16 @@
 <body>
 <div th:replace="partials :: navbar"></div>
 
-<div th:if="${guessCorrect}">
+<!-- If it a Correct Answer-->
+<div th:if="${guessCorrect}"><i class="far fa-smile"></i>
     You guessed correctly!
 </div>
+
 <p>You guessed: </p><span th:text="${n}"></span>
 <p>Dice has: </p><span th:text="${roll}"></span>
-
-<div th:if="${!guessCorrect}">
+<hr>
+<!-- If it a Wrong Answer-->
+<div th:if="${!guessCorrect}"><i class="far fa-dizzy"></i>
     Try again!
 </div>
 
