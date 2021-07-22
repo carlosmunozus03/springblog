@@ -21,7 +21,7 @@ public class PostController {
     @GetMapping("/posts")
     public String posts(Model model) {
         model.addAttribute("Posts", post);
-        return "posts/index";
+        return "/posts/index";
     }
 
     @GetMapping("/posts/{id}")
@@ -29,7 +29,7 @@ public class PostController {
     public String postId(@PathVariable int id, Model model) {
         Post post = new Post("Test post", "test describe");
         model.addAttribute("post", post);
-        return "posts/show";
+        return "/posts/show";
     }
 
     @GetMapping("/posts/create")
