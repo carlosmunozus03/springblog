@@ -5,43 +5,41 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PostController {
-
-    List<Post> post = Arrays.asList(
-            new Post("Languages", "Always Learn another language, it could be person to person or person to machine"),
-            new Post("Neptune Cohort 2021!", "The best cohort in the codeup history!"),
-            new Post("Birds!", "Her love birding..."),
-            new Post("Airports", "Lost in the huge airports sometimes...")
-    );
+    private List<Post> posts = new ArrayList<>();
 
     @GetMapping("/posts")
-    public String posts(Model model) {
-        model.addAttribute("Posts", post);
-        return "/posts/index";
+    public String viewPosts(Model model) {
+        posts.add(new Post("This is post1", "This is post1s body"));
+        posts.add(new Post("This is post2", "This is post2s body"));
+        model.addAttribute("posts", posts);
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String postId(@PathVariable int id, Model model) {
-        Post post = new Post("Test post", "test describe");
+    public String singlePost(@PathVariable long id, Model model) {
+        Post post = new Post("Jeff buys bicycle.", "No one know why. Must really like the feeling of the wind on his face.");
         model.addAttribute("post", post);
-        return "/posts/show";
+        return "posts/show";
     }
 
+    // When you visit the URL you will see the form to create a post.
     @GetMapping("/posts/create")
     @ResponseBody
-    public String createGet() {
-        return "Form for creating a post(Get)";
+    public String createForm() {
+        return "View form to create a post.";
     }
 
+    // When you submit the form on the /posts/create page,
+    // the information will be posted to the same URL
+//    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
     @PostMapping("/posts/create")
     @ResponseBody
     public String createPost() {
-        return "Create a post here(com.example.blog.models.Post)";
+        return "Creates new post.";
     }
-
 }

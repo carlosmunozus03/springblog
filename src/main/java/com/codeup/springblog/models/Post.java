@@ -6,7 +6,6 @@ public class Post {
     private String body;
 
     public Post() {
-
     }
 
     public Post(String title, String body) {
