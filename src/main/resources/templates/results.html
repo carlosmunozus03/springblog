@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials :: head"></head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/david-partials :: head ('Checking Your Guess')"/>
+<body class="main">
+<nav th:replace="partials/david-partials :: navbar"/>
+<header></header>
+<main class="container">
+    <div class="card offwhite-body">
+        <div class="card-image">
+            <img src="../static/img/big-bar.png" th:src="@{/img/big-bar.png}" alt="colorful bar"/>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title">Here's the deal...</h3>
+            <p>You guessed <span th:text="${n}"></span></p>
+            <p>You rolled <span th:text="${magicNumber}"></span></p>
+            <p th:if="${check}">You guessed right!</p>
+            <p th:if="${!check}">You guessed wrong...</p>
+            <br/>
+            <a class="waves-effect waves-purple btn-small indigo accent-3" href="/roll-dice">Go back and play again</a>
+        </div>
+    </div>
+</main>
 
-<body>
-<div th:replace="partials :: navbar"></div>
-
-<!-- If it a Correct Answer-->
-<div th:if="${guessCorrect}"><i class="far fa-smile"></i>
-    You guessed correctly!
-</div>
-
-<p>You guessed: </p><span th:text="${n}"></span>
-<p>Dice has: </p><span th:text="${roll}"></span>
-<hr>
-<!-- If it a Wrong Answer-->
-<div th:if="${!guessCorrect}"><i class="far fa-dizzy"></i>
-    Try again!
-</div>
-
-<div th:replace="partials :: footer"></div>
-
+<footer th:replace="partials/david-partials :: footer"/>
+<script th:replace="partials/david-partials :: m-script"/>
+<script th:replace="partials/david-partials :: j-query"/>
 </body>
 </html>

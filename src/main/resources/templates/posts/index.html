@@ -1,14 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--    added head-->
-<head th:replace="head :: post-head"></head>
-
-<body>
-
-<div>
-    <!--    added navbar-->
-    <div th:replace="Post-Partials :: navbar"></div>
-</div>
-
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/david-partials :: head ('Viewing All Posts')"/>
+<body class="main">
+<nav th:replace="partials/david-partials :: navbar"/>
+<header></header>
+<main class="container">
+    <div class="card head-card">
+        <div class="card-image">
+            <img src="../static/img/big-bar.png" th:src="@{/img/big-bar.png}" alt="colorful bar"/>
+        </div>
+        <div class="card-content">
+            <h4 class="card-title">Viewing All Posts</h4>
+            <p>Click any post to view all of its content.</p>
+        </div>
+    </div>
+    <div th:each="post : ${posts}">
+        <div class="card offwhite-body">
+            <div class="card-image">
+                <img src="../static/img/big-bar.png" th:src="@{/img/big-bar.png}" alt="colorful bar"/>
+            </div>
+            <div class="card-content preview-post">
+                <h4 class="card-title" th:text="${post.title}"/>
+                <p th:text="${post.body}"/>
+            </div>
+            <div class="small-space"/>
+        </div>
+    </div>
+</main>
+<footer th:replace="partials/david-partials :: footer"/>
+<script th:replace="partials/david-partials :: m-script"/>
+<script th:replace="partials/david-partials :: j-query"/>
 </body>
 </html>

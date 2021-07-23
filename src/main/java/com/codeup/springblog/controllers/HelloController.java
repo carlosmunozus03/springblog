@@ -13,14 +13,13 @@ public class HelloController {
         return "<h1>Hello from Spring!</h1>";
     }
 
-    //the example below is with a String variable name and added Model and html-hello
     @GetMapping("/hello/{name}")
     public String sayHello(@PathVariable String name, Model model) {
         model.addAttribute("name", name);
         return "hello";
     }
 
-    //Create form start...
+
     @GetMapping("/join")
     public String showJoinForm() {
         return "join";
@@ -31,22 +30,18 @@ public class HelloController {
         model.addAttribute("cohort", "Welcome to " + cohort + "!");
         return "join";
     }
-    //Create form end...
 
 
-    //the example below is with a Number variable num
     @GetMapping("/number/{num}")
     @ResponseBody
-    public int displayNumber(@PathVariable int num) {
-        return num;
-        //http://localhost:8080/number/23
+    public String displayNumber(@PathVariable int num) {
+        // must use the value of method to return the value of the integer as a string object.
+        return String.valueOf(num);
     }
 
-    //the example below is with a String variable (CSS)
-    @GetMapping("/hello/in/{color}")
+    @RequestMapping(path = "/hello/in/{color}", method = RequestMethod.GET)
     @ResponseBody
     public String helloInColor(@PathVariable String color) {
-        return "<h1 style =\"color: " + color + "\">Hello in " + color + "!</h1>";
-        //http://localhost:8080/hello/in/green
+        return "<h1 style=\"color: " + color + "\">Hello in " + color + "!</h1>";
     }
 }
