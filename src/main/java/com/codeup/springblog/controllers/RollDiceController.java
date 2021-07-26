@@ -1,7 +1,5 @@
 package com.codeup.springblog.controllers;
 
-
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +16,6 @@ public class RollDiceController {
         model.addAttribute("n", n);
         model.addAttribute("magicNumber", magicNumber);
         model.addAttribute("check", check);
-        return "dice-roll-check";
+        return "results";
     }
 }
