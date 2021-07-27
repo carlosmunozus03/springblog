@@ -1,6 +1,5 @@
 package com.codeup.springblog.controllers;
 
-
 import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
