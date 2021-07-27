@@ -90,4 +90,5 @@ public class Ad {
     public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
 }
