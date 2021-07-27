@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-
 @Controller
 public class AdController {
     private final AdRepository adDao;
@@ -55,5 +54,17 @@ public class AdController {
         // Since we have our form binding our model data, we can just just save the Ad directly, without having to use RequestParam.
         adDao.save(ad);
         return "redirect:/ads";
+    }
+
+    @GetMapping("ads/{id}/edit")
+    public String editAdForm(@PathVariable long id, Model model) {
+        Ad adToEdit = adDao.getById(id);
+        model.addAttribute("ad", adToEdit);
+        return "ads/create";
+    }
+
+    @PostMapping("/ads/{id}/edit")
+    public String editAd(@PathVariable long id, @ModelAttribute Ad ad) {
+        return createAd(ad);
     }
 }

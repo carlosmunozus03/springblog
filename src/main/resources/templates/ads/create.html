@@ -11,10 +11,10 @@ we need to have our th:object attribute, with our ad model attribute as the valu
     Title:
     <!--By using our selection expression syntax, *{}, Thymeleaf will recognize our model fields
      by using th:field instead of our typical name attribute in our inputs.-->
-    <input th:field="*{title}"/>
+    <input th:field="*{title}" th:value="*{title}"/>
     <br/>
     Description:
-    <textarea th:field="*{description}"/>
+    <textarea th:field="*{description}" th:value="*{description}"/>
     <br/>
     <input type="submit"/>
 </form>
