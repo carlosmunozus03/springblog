@@ -26,6 +26,7 @@ public class HelloController {
         return "hello";
     }
 
+
     @GetMapping("/join")
     public String showJoinForm() {
         return "join";
@@ -34,11 +35,10 @@ public class HelloController {
     @PostMapping("/join")
     public String joinCohort(@RequestParam(name = "cohort") String cohort, Model model) {
         model.addAttribute("cohort", "Welcome to " + cohort + "!");
-        emailSvc.prepareAndSend("carlos.munoz.us03@gmail.com", "Hello Welcome to" + cohort + "!", "Thanks for " +
-                "attending our " +
-                "Development program!");
+//        emailSvc.prepareAndSend("test@test.com", "Hello! Welcome to " + cohort + "!", "Thank you for attending our Web Development program!");
         return "join";
     }
+
 
     @GetMapping("/number/{num}")
     @ResponseBody

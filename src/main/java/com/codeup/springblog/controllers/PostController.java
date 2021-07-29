@@ -4,6 +4,7 @@ import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.PostRepository;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.models.UserRepository;
+import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +16,12 @@ import java.util.List;
 public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -36,12 +39,14 @@ public class PostController {
     @GetMapping("/posts/{id}/edit")
     public String editForm(@PathVariable long id, Model model) {
         model.addAttribute("post", postDao.getById(id));
-        return "posts/create";
+        return "posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")
     public String editPost(@PathVariable long id, @ModelAttribute Post post) {
-        return createPost(post);
+        post.setUser(userDao.getById(1L));
+        postDao.save(post);
+        return "redirect:/posts/" + id;
     }
 
     @PostMapping("/posts/delete/{id}")
@@ -61,6 +66,7 @@ public class PostController {
         User user = userDao.getById(1L);
         post.setUser(user);
         postDao.save(post);
+        emailService.prepareAndSend(post, "You created: " + post.getTitle(), post.getBody());
         return "redirect:/posts";
     }
 }
