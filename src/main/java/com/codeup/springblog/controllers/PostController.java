@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
-    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
         this.userDao = userDao;
-        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -63,7 +61,7 @@ public class PostController {
         User user = userDao.getById(1L);
         post.setUser(user);
         postDao.save(post);
-        emailService.prepareAndSend(post, "You created: " + post.getTitle(), post.getBody());
+//        emailService.prepareAndSend(post, "You created: " + post.getTitle(), post.getBody());
         return "redirect:/posts";
     }
 }

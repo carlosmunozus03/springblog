@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class HelloController {
 
-    private final EmailService emailSvc;
+//    private final EmailService emailSvc;
 
-    public HelloController(EmailService emailSvc) {
-        this.emailSvc = emailSvc;
+    public HelloController() {
+
     }
 
     @GetMapping("/hello")

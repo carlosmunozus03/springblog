@@ -9,13 +9,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+
 @Service("mailService")
 public class EmailService {
 
     @Autowired
     public JavaMailSender emailSender;
 
-    @Value("${63f761dff8-685887@inbox.mailtrap.io}")
+    @Value("${spring.mail.from}")
     private String from;
 
     public void prepareAndSend(Post post, String subject, String body) {
