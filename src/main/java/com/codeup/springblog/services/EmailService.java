@@ -15,7 +15,7 @@ public class EmailService {
     @Autowired
     public JavaMailSender emailSender;
 
-    @Value("${spring.mail.from}")
+    @Value("${63f761dff8-685887@inbox.mailtrap.io}")
     private String from;
 
     public void prepareAndSend(Post post, String subject, String body) {
