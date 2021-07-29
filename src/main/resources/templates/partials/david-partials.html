@@ -18,15 +18,15 @@
                                                               th:src="@{/img/cool-logo.png}" alt="Cool and Good Blog"/></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/posts" class="offwhite-text">All Posts</a></li>
-                <li sec:authorize="!isAuthenticated()"><a href="/login" class="offwhite-text">Log-In</a></li>
-                <li sec:authorize="!isAuthenticated()"><a href="/register" class="offwhite-text">Register A New User</a>
-                </li>
                 <li sec:authorize="isAuthenticated()"><a href="/posts/create" class="offwhite-text">Create A Post</a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" th:method="post" id="form1">
                         <a onclick="document.getElementById('form1').submit();" class="offwhite-text">Log-Out</a>
                     </form>
+                </li>
+                <li sec:authorize="!isAuthenticated()"><a href="/login" class="offwhite-text">Log-In</a></li>
+                <li sec:authorize="!isAuthenticated()"><a href="/register" class="offwhite-text">Register A New User</a>
                 </li>
             </ul>
         </div>
