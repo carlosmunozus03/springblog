@@ -53,12 +53,16 @@ public class PostController {
 
     @PostMapping("/posts/{id}/edit")
     public String editPost(@PathVariable long id, @ModelAttribute Post post) {
-        post.setUser(userDao.getById(1L));
-        postDao.save(post);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post postFromDB = postDao.getById(id);
+        if (user.getId() == postFromDB.getUser().getId()) {
+            post.setUser(user);
+            postDao.save(post);
+        }
         return "redirect:/posts/" + id;
     }
 
-    @PostMapping("/posts/delete/{id}")
+    @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.getById(id);
@@ -76,7 +80,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-        User user = userDao.getById(1L);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         postDao.save(post);
 //        emailService.prepareAndSend(post, "You created: " + post.getTitle(), post.getBody());

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/david-partials :: head ('Welcome!')"/>
+<head th:replace="partials/david-partials :: head ('Error!')"/>
 <body class="main">
 <nav th:replace="partials/david-partials :: navbar"/>
 <header></header>
@@ -10,6 +10,9 @@
             <img src="../static/img/big-bar.png" th:src="@{/img/big-bar.png}" alt="colorful bar"/>
         </div>
         <div class="card-content">
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <img style="width: 100%" th:src="@{/img/daria.gif}" alt="fire"/>
+            </div>
             <h3 class="card-title">Hold up, Partner</h3>
             <p>Seems we have a problem...</p>
             <a class="waves-effect waves-purple btn-small indigo accent-3" th:href="@{/posts}">Return to posts</a>
