@@ -4,7 +4,6 @@ import com.codeup.springblog.models.Ad;
 import com.codeup.springblog.repositories.AdRepository;
 
 import com.codeup.springblog.repositories.UserRepository;
-import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,5 +66,11 @@ public class AdController {
     @PostMapping("/ads/{id}/edit")
     public String editAd(@PathVariable long id, @ModelAttribute Ad ad) {
         return createAd(ad);
+    }
+
+    @PostMapping("ads/{id}/delete")
+    public String deleteAd(@PathVariable long id) {
+        adDao.delete(adDao.findById(id));
+        return "redirect:/ads";
     }
 }
